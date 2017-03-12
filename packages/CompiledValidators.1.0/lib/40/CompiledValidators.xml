@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CompiledValidators</name>
+    </assembly>
+    <members>
+        <member name="T:CompiledValidators.ErrorMessageValidatorInfo">
+            <summary>
+            Represents a validator with static or validator-specific error messages.
+            </summary>
+        </member>
+        <member name="T:CompiledValidators.ValidatorInfo">
+            <summary>
+            Represents a validator with no error message.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.ValidatorInfo.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.ValidatorInfo"/> class.
+            </summary>
+            <param name="validator">The validator this object describes.</param>
+        </member>
+        <member name="P:CompiledValidators.ValidatorInfo.Validator">
+            <summary>
+            Gets the validator this object describes.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.ErrorMessageValidatorInfo.#ctor(System.Object,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.ErrorMessageValidatorInfo"/> class.
+            </summary>
+            <param name="validator">The validator this object describes.</param>
+            <param name="errorMessage">The static error message.</param>
+        </member>
+        <member name="M:CompiledValidators.ErrorMessageValidatorInfo.#ctor(System.Object,System.Func{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.ErrorMessageValidatorInfo"/> class.
+            </summary>
+            <param name="validator">The validator this object describes.</param>
+            <param name="errorMessage">A function that provides the error message for this validator.</param>
+        </member>
+        <member name="M:CompiledValidators.ErrorMessageValidatorInfo.GetErrorMessage">
+            <summary>
+            Gets the error message for this validator.
+            </summary>
+            <returns>An error message.</returns>
+        </member>
+        <member name="T:CompiledValidators.MemberErrorValidatorInfo">
+            <summary>
+            Represents a validator with instance-specific error messages.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.MemberErrorValidatorInfo.#ctor(System.Object,System.Func{System.Object,System.Collections.Generic.IEnumerable{CompiledValidators.MemberValidationErrorMessage}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.MemberErrorValidatorInfo"/> class.
+            </summary>
+            <param name="validator">The validator this object describes.</param>
+            <param name="errors">A function that given an invalid object, provides the errors specific to this validator.</param>
+        </member>
+        <member name="M:CompiledValidators.MemberErrorValidatorInfo.GetErrorMessages(System.Object)">
+            <summary>
+            Gets the error messages this validator produces.
+            </summary>
+            <param name="obj">The object that is being validated.</param>
+            <returns>A list of errors this validator has produced.</returns>
+        </member>
+        <member name="T:CompiledValidators.MemberValidationErrorMessage">
+            <summary>
+            Represents an error message associated with a member.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.MemberValidationErrorMessage.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.MemberValidationErrorMessage"/> struct.
+            </summary>
+            <param name="memberName">The name of the member the error message is associated with.</param>
+            <param name="errorMessage">The error message.</param>
+        </member>
+        <member name="P:CompiledValidators.MemberValidationErrorMessage.MemberName">
+            <summary>
+            The name of the member the error message is associated with.
+            </summary>
+        </member>
+        <member name="P:CompiledValidators.MemberValidationErrorMessage.ErrorMessage">
+            <summary>
+            Gets the error message.
+            </summary>
+        </member>
+        <member name="T:CompiledValidators.ValidationError">
+            <summary>
+            Represents a specific validation error.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.ValidationError.#ctor(System.String,System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.ValidationError"/> struct.
+            </summary>
+            <param name="memberName">The name of the member that failed validation.</param>
+            <param name="errorMessage">The error message.</param>
+            <param name="object">The validation target.</param>
+        </member>
+        <member name="P:CompiledValidators.ValidationError.MemberName">
+            <summary>
+            Gets the name of the member that failed validation.
+            </summary>
+        </member>
+        <member name="P:CompiledValidators.ValidationError.ErrorMessage">
+            <summary>
+            Gets the error message.
+            </summary>
+        </member>
+        <member name="P:CompiledValidators.ValidationError.Object">
+            <summary>
+            Gets the validation target.
+            </summary>
+            <remarks>
+            This is the object containing the object that failed validation.
+            </remarks>
+        </member>
+        <member name="T:CompiledValidators.UserAssemblyRecursionPolicy">
+            <summary>
+            A policy that does not recurse into .NET framework assemblies.
+            </summary>
+        </member>
+        <member name="T:CompiledValidators.IRecursionPolicy">
+            <summary>
+            Defines the policy to be used when recursing the object tree.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.IRecursionPolicy.GetPolicy(System.Reflection.MemberInfo)">
+            <summary>
+            Gets the policy to be applied.
+            </summary>
+            <param name="member">The member to which the policy will be applied.</param>
+            <returns>A policy.</returns>
+        </member>
+        <member name="M:CompiledValidators.UserAssemblyRecursionPolicy.GetPolicy(System.Reflection.MemberInfo)">
+            <summary>
+            Gets the policy to be applied.
+            </summary>
+            <param name="member">The member to which the policy will be applied.</param>
+            <returns>
+            A policy.
+            </returns>
+        </member>
+        <member name="T:CompiledValidators.PolicyOptions">
+            <summary>
+            Indicates options to be applied when recursing the the object tree.
+            </summary>
+        </member>
+        <member name="F:CompiledValidators.PolicyOptions.None">
+            <summary>
+            Use default behavior.
+            </summary>
+        </member>
+        <member name="F:CompiledValidators.PolicyOptions.NoFollow">
+            <summary>
+            Do not validate the members of the current member.
+            </summary>
+        </member>
+        <member name="F:CompiledValidators.PolicyOptions.NoIterate">
+            <summary>
+            Do not iterate the current member and validate the items.
+            </summary>
+        </member>
+        <member name="F:CompiledValidators.PolicyOptions.All">
+            <summary>
+            All options.
+            </summary>
+        </member>
+        <member name="T:CompiledValidators.AttributeValidatorProvider">
+            <summary>
+            Provides all attributes as validators.
+            </summary>
+        </member>
+        <member name="T:CompiledValidators.IValidatorProvider">
+            <summary>
+            Provides validators for types and their members.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.IValidatorProvider.GetValidators(System.Reflection.MemberInfo)">
+            <summary>
+            Gets the validators for a type or a member.
+            </summary>
+            <param name="member">The construct to get validators for.</param>
+            <returns>A list of validators.</returns>
+            <remarks>
+            The list of possible types passed to <paramref name="member"/> are:
+            <list type="disc">
+            <item><see cref="T:System.Type"/></item>
+            <itm><see cref="T:System.Reflection.FieldInfo"/></itm>
+            <item><see cref="T:System.Reflection.PropertyInfo"/></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:CompiledValidators.AttributeValidatorProvider.GetValidators(System.Reflection.MemberInfo)">
+            <summary>
+            Gets the validators for a type or a member.
+            </summary>
+            <param name="member">The construct to get validators for.</param>
+            <returns>
+            A list of validators.
+            </returns>
+        </member>
+        <member name="T:CompiledValidators.Extensions">
+            <summary>
+            Extensions for validation constructs.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.Extensions.IsValidInferred(CompiledValidators.IValidator,System.Object)">
+            <summary>
+            Calls <see cref="M:CompiledValidators.IValidator.IsValid``1(``0)"/> with the given object's inspected type as the type parameter.
+            </summary>
+            <param name="source">The validator to call.</param>
+            <param name="obj">The object to validate.</param>
+            <returns>
+              <c>true</c> if the specified object is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CompiledValidators.Extensions.ValidateInferred(CompiledValidators.IValidator,System.Object,System.Boolean)">
+            <summary>
+            Calls <see cref="M:CompiledValidators.IValidator.Validate``1(``0,System.Boolean)"/> with the given object's inspected type as the type parameter.
+            </summary>
+            <param name="source">The validator to call.</param>
+            <param name="obj">The object to validate.</param>
+            <param name="isOptimistic">Set to <c>true</c> to indicate high liklihood that the object is valid.</param>
+            <returns>A list of errors or <c>null</c>.</returns>
+        </member>
+        <member name="M:CompiledValidators.Extensions.ValidateToFirstErrorInferred(CompiledValidators.IValidator,System.Object)">
+            <summary>
+            Calls <see cref="M:CompiledValidators.IValidator.ValidateToFirstError``1(``0)"/> with the given object's inspected type as the type parameter.
+            </summary>
+            <param name="source">The validator to call.</param>
+            <param name="obj">The object to validate.</param>
+            <returns>The first invalid object encountered in the tree.</returns>
+        </member>
+        <member name="T:CompiledValidators.DataErrorInfoValidationExpressionConverter">
+            <summary>
+            Converts <see cref="T:System.ComponentModel.IDataErrorInfo"/> objects into validation expressions.
+            </summary>
+        </member>
+        <member name="T:CompiledValidators.IValidationExpressionConverter">
+            <summary>
+            Converts a validator into an expression to be called during validation.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.IValidationExpressionConverter.Convert(System.Object,System.Linq.Expressions.Expression)">
+            <summary>
+            Converts the specified validator into an expression.
+            </summary>
+            <param name="validator">The validator.</param>
+            <param name="member">The member being validated.</param>
+            <returns>An expression that returns <c>true</c> if the object is valid, or <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:CompiledValidators.IValidationExpressionConverter.CanConvert(System.Object,System.Type)">
+            <summary>
+            Determines whether this converter can conver the given validator into an expression.
+            </summary>
+            <param name="validator">The validator.</param>
+            <param name="memberType">The type of the member being validated.</param>
+            <returns>
+              <c>true</c> if this instance can convert the given validator; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CompiledValidators.DataErrorInfoValidationExpressionConverter.Convert(System.Object,System.Linq.Expressions.Expression)">
+            <summary>
+            Converts the specified validator.
+            </summary>
+            <param name="validator">The validator.</param>
+            <param name="member">The member.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CompiledValidators.DataErrorInfoValidationExpressionConverter.CanConvert(System.Object,System.Type)">
+            <summary>
+            Determines whether this instance can convert the specified validator.
+            </summary>
+            <param name="validator">The validator.</param>
+            <param name="memberType">Type of the member.</param>
+            <returns>
+              <c>true</c> if this instance can convert the specified validator; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:CompiledValidators.Validator">
+            <summary>
+            Provides validation using cached static analysis.
+            </summary>
+        </member>
+        <member name="T:CompiledValidators.IValidator">
+            <summary>
+            Provides validation for objects.
+            </summary>
+        </member>
+        <member name="M:CompiledValidators.IValidator.IsValid``1(``0)">
+            <summary>
+            Determines whether the specified object is valid.
+            </summary>
+            <typeparam name="T">The type to use for static analysis.</typeparam>
+            <param name="obj">The object to validate.</param>
+            <returns>
+              <c>true</c> if the specified object is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CompiledValidators.IValidator.Validate``1(``0,System.Boolean)">
+            <summary>
+            Validates the specified object and returns all errors.
+            </summary>
+            <typeparam name="T">The type to use for static analysis.</typeparam>
+            <param name="obj">The object to validate.</param>
+            <param name="isOptimistic">Set to <c>true</c> to indicate high liklihood that the object is valid.</param>
+            <returns>A list of errors or <c>null</c>.</returns>
+            <remarks>
+            If the <paramref name="isOptimistic"/> flag is set to <c>true</c>, the validator will choose
+            a faster validation strategy and if the object is valid, return <c>null</c>. If the object is invalid
+            or the <paramref name="isOptimistic"/> flag is set to <c>false</c>, the validator will use a slower and more thorough
+            strategy to collect all errors.
+            </remarks>
+        </member>
+        <member name="M:CompiledValidators.IValidator.ValidateToFirstError``1(``0)">
+            <summary>
+            Validates until the first error is found and returns it.
+            </summary>
+            <typeparam name="T">The type to use for static analysis.</typeparam>
+            <param name="obj">The object to validate.</param>
+            <returns>The first invalid object encountered in the tree.</returns>
+        </member>
+        <member name="M:CompiledValidators.Validator.#ctor(System.Boolean,CompiledValidators.IRecursionPolicy,CompiledValidators.IValidatorProvider,CompiledValidators.IValidationExpressionConverter[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.Validator"/> class.
+            </summary>
+            <param name="isThreadSafe">Set to <c>true</c> to indicate that the validator will be called from a thread-safe context.</param>
+            <param name="recursionPolicy">The recursion policy.</param>
+            <param name="validatorProvider">The validator provider.</param>
+            <param name="converters">The converters.</param>
+        </member>
+        <member name="M:CompiledValidators.Validator.#ctor(System.Boolean,CompiledValidators.IRecursionPolicy,CompiledValidators.IValidatorProvider,System.Collections.Generic.IEnumerable{CompiledValidators.IValidationExpressionConverter})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CompiledValidators.Validator"/> class.
+            </summary>
+            <param name="isThreadSafe">Set to <c>true</c> to indicate that the validator will be called from a thread-safe context.</param>
+            <param name="recursionPolicy">The recursion policy.</param>
+            <param name="validatorProvider">The validator provider.</param>
+            <param name="converters">The converters.</param>
+        </member>
+        <member name="M:CompiledValidators.Validator.IsValid``1(``0)">
+            <summary>
+            Determines whether the specified object is valid.
+            </summary>
+            <typeparam name="T">The type to use for static analysis.</typeparam>
+            <param name="obj">The object to validate.</param>
+            <returns>
+              <c>true</c> if the specified object is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CompiledValidators.Validator.ValidateToFirstError``1(``0)">
+            <summary>
+            Validates until the first error is found and returns it.
+            </summary>
+            <typeparam name="T">The type to use for static analysis.</typeparam>
+            <param name="obj">The object to validate.</param>
+            <returns>
+            The first invalid object encountered in the tree.
+            </returns>
+        </member>
+        <member name="M:CompiledValidators.Validator.Validate``1(``0,System.Boolean)">
+            <summary>
+            Validates the specified object and returns all errors.
+            </summary>
+            <typeparam name="T">The type to use for static analysis.</typeparam>
+            <param name="obj">The object to validate.</param>
+            <param name="isOptimistic">Set to <c>true</c> to indicate high liklihood that the object is valid.</param>
+            <returns>
+            A list of errors or <c>null</c>.
+            </returns>
+        </member>
+        <member name="F:CompiledValidators.Validator.RootNullValidationError">
+            <summary>
+            Gets the validation error returned if the given object is null.
+            </summary>
+        </member>
+        <member name="P:CompiledValidators.Validator.Default">
+            <summary>
+            Gets or sets the default validator.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,5 @@
+D:\TestWeb\i2Nova\i2Nova.Business\bin\Debug\i2Nova.Business.dll
+D:\TestWeb\i2Nova\i2Nova.Business\bin\Debug\i2Nova.Business.pdb
+D:\TestWeb\i2Nova\i2Nova.Business\obj\Debug\i2Nova.Business.csprojResolveAssemblyReference.cache
+D:\TestWeb\i2Nova\i2Nova.Business\obj\Debug\i2Nova.Business.dll
+D:\TestWeb\i2Nova\i2Nova.Business\obj\Debug\i2Nova.Business.pdb
